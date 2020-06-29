@@ -1,0 +1,26 @@
+[Unit]
+Description=lutronpro
+
+[Service]
+#EnvironmentFile=/etc/profile.d/lutronpro_env.sh
+#EnvironmentFile=/home/pi/node_modules/lutronpro_env.sh
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+Environment=SMARTBRIDGE_IP=10.0.0.92
+Environment=SMARTTHINGS_IP=10.0.0.91
+Environment=HUEBRIDGE_IP=10.0.0.90
+Environment=CLIENT_ID=myclientid
+Environment=CLIENT_SECRET=myclientsecret
+Environment=HUE_USER=myhueuser
+Environment=LUTRON_USER=mylutronuser
+Environment=LUTRON_PW=mylutronpassword
+
+WorkingDirectory=/home/pi/node_modules/lutronpro
+ExecStart=/home/pi/node_modules/lutronpro/runServer.js
+Restart=always
+User=pi
+# Note Debian/Ubuntu uses 'nogroup', RHEL/Fedora uses 'nobody'
+Group=nogroup
+
+[Install]
+WantedBy=multi-user.target
